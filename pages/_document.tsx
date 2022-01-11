@@ -17,13 +17,20 @@ class MyDocument extends Document {
         return (
             <Html>
                 <Head>
-                    {/* eslint-disable-next-line @next/next/no-title-in-document-head */}
-                    <title>Power Workout | LetherMade</title>
-                    <meta
-                        name="description"
-                        content="7-minute power workout! Enjoy"
-                    />
                     <link rel="icon" href="/favicon.ico" />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        href="/favicon-32x32.png"
+                        sizes="32x32"
+                    />
+                    <link
+                        rel="icon"
+                        type="image/png"
+                        href="/favicon-16x16.png"
+                        sizes="16x16"
+                    />
+
                     <link
                         rel="preconnect"
                         href="https://fonts.googleapis.com"

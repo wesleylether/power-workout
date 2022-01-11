@@ -1,23 +1,21 @@
 import type { InferGetStaticPropsType } from 'next'
 import Head from 'next/head'
 import WorkoutFlow from '../components/WorkoutFlow'
-import { Workout } from './api/data'
-import { ReactElement, useState } from 'react'
+import React, { ReactElement, useState } from 'react'
+import { workoutData } from '../data/workoutData'
+import { Workout } from '../types/workout'
 
 export const getStaticProps: () => Promise<
     { notFount: boolean } | { props: { data: Workout[] } }
 > = async () => {
-    const res = await fetch(`${process.env.HOST}/api/data`)
-    const data: Workout[] = await res.json()
-
-    if (!data) {
+    if (!workoutData) {
         return {
             notFount: true,
         }
     }
 
     return {
-        props: { data },
+        props: { data: workoutData },
     }
 }
 
@@ -69,6 +67,13 @@ function Home({ data }: InferGetStaticPropsType<typeof getStaticProps>) {
 
     return (
         <>
+            <Head>
+                <title>Power Workout | LetherMade</title>
+                <meta
+                    name="description"
+                    content="7-minute power workout! Enjoy"
+                />
+            </Head>
             <div
                 className={
                     'w-screen h-screen flex justify-center items-center bg-purple-600'
