@@ -6,10 +6,11 @@ import React, {
     useRef,
     useState,
 } from 'react'
-import { Workout } from '../pages/api/data'
 import gsap from 'gsap'
 import DrawSVGPlugin from 'gsap/dist/DrawSVGPlugin'
 import classNames from 'classnames'
+import { Workout } from '../types/workout'
+
 gsap.registerPlugin(DrawSVGPlugin)
 
 interface Props extends HTMLAttributes<HTMLDivElement> {

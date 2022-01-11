@@ -1,15 +1,7 @@
-import React, {
-    FC,
-    ReactElement,
-    useCallback,
-    useEffect,
-    useMemo,
-    useRef,
-    useState,
-} from 'react'
-import { Workout } from '../pages/api/data'
+import React, { FC, ReactElement, useEffect, useState } from 'react'
 import WorkoutItem from './WorkoutItem'
 import classNames from 'classnames'
+import { Workout } from '../types/workout'
 
 interface Props {
     workout: Workout[]
