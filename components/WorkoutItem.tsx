@@ -54,10 +54,13 @@ const WorkoutItem: FC<Props> = ({
 
     return (
         <div
-            className={classNames('relative text-center space-y-4', className)}
+            className={classNames(
+                'relative text-center md:space-y-4',
+                className
+            )}
             {...props}
         >
-            <div className={'relative flex justify-center items-center'}>
+            <div className={'p-8 relative flex justify-center items-center'}>
                 <svg
                     viewBox="0 0 100 100"
                     className={'stroke-white -rotate-90'}
@@ -72,9 +75,11 @@ const WorkoutItem: FC<Props> = ({
                         fill={'none'}
                     />
                 </svg>
-                <div className={'absolute text-4xl'}>{seconds}</div>
+                <div className={'absolute text-6xl font-bold'}>{seconds}</div>
             </div>
-            <div className={'px-4 text-2xl font-light'}>{workout.name}</div>
+            <div className={'px-4 text-4xl md:text-6xl font-bold'}>
+                {workout.name}
+            </div>
         </div>
     )
 }

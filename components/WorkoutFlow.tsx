@@ -47,16 +47,18 @@ const WorkoutFlow: FC<Props> = ({ workout, finished }): ReactElement => {
             )}
         >
             <WorkoutItem
-                className={'py-4'}
+                className={'py-2 md:py-8'}
                 workout={activeWorkout}
                 onFinish={nextIndex}
             />
 
-            <div className={'py-4 text-purple-400'}>
+            <div className={'py-2 md:py-8 text-purple-400'}>
                 {nextWorkout && (
                     <>
-                        <div>Next:</div>
-                        <div className={'text-2xl'}>{nextWorkout.name}</div>
+                        <div className={'mb-2 text-xl'}>Next:</div>
+                        <div className={'text-4xl md:text-6xl font-bold'}>
+                            {nextWorkout.name}
+                        </div>
                     </>
                 )}
             </div>
