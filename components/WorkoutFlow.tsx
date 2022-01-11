@@ -1,24 +1,66 @@
-import React, {FC, ReactElement, useEffect, useRef, useState} from 'react'
-import {Workout} from '../pages/api/data'
+import React, {
+    FC,
+    ReactElement,
+    useCallback,
+    useEffect,
+    useMemo,
+    useRef,
+    useState,
+} from 'react'
+import { Workout } from '../pages/api/data'
+import WorkoutItem from './WorkoutItem'
+import classNames from 'classnames'
 
 interface Props {
-    workout: Workout[];
+    workout: Workout[]
+    finished: () => void
 }
 
-const WorkoutFlow: FC<Props> = ({ workout }): ReactElement => {
-    const workoutRef = useRef<Workout[]>(workout)
-    const [activeWorkout, setActiveWorkout] = useState<Workout>()
+const WorkoutFlow: FC<Props> = ({ workout, finished }): ReactElement => {
+    const [index, setIndex] = useState<number>(0)
+    const [activeWorkout, setActiveWorkout] = useState<Workout>(workout[index])
+    const [nextWorkout, setNextWorkout] = useState<Workout>()
+
+    const nextIndex = () => {
+        if (index + 1 === workout.length) {
+            return finished()
+        }
+
+        setIndex(index + 1)
+    }
 
     useEffect(() => {
-        if (!workoutRef.current) return
+        setActiveWorkout(workout[index])
 
-        setActiveWorkout(workoutRef.current.shift())
-    }, [])
+        if (index + 1 < workout.length) {
+            setNextWorkout(workout[index + 1])
+        } else {
+            setNextWorkout(undefined)
+        }
+    }, [index, workout])
 
     return (
-        <>
-            {JSON.stringify(activeWorkout)}
-        </>
+        <div
+            className={classNames(
+                'p-4 w-full max-w-sm md:max-w-xl text-white text-center divide-purple-400',
+                { 'divide-y': !!nextWorkout }
+            )}
+        >
+            <WorkoutItem
+                className={'py-4'}
+                workout={activeWorkout}
+                onFinish={nextIndex}
+            />
+
+            <div className={'py-4 text-purple-400'}>
+                {nextWorkout && (
+                    <>
+                        <div>Next:</div>
+                        <div className={'text-2xl'}>{nextWorkout.name}</div>
+                    </>
+                )}
+            </div>
+        </div>
     )
 }
 

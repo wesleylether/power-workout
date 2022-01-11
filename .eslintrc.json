@@ -1,21 +1,12 @@
 {
-  "extends": "next/core-web-vitals",
+  "extends": [
+    "next/core-web-vitals",
+    "prettier"
+  ],
   "rules": {
-    "indent": [
-      "error",
-      4
-    ],
     "linebreak-style": [
       "error",
       "unix"
-    ],
-    "quotes": [
-      "error",
-      "single"
-    ],
-    "semi": [
-      "error",
-      "never"
     ]
   }
 }
