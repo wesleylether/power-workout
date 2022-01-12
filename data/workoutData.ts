@@ -30,7 +30,15 @@ export const workoutData: Workout[] = [
         seconds: 15,
     },
     {
-        name: 'Rotate',
+        name: 'Side planks',
+        seconds: 30,
+    },
+    {
+        name: 'Planking',
+        seconds: 15,
+    },
+    {
+        name: 'Triceps push ups',
         seconds: 30,
     },
     {
@@ -66,7 +74,15 @@ export const workoutData: Workout[] = [
         seconds: 15,
     },
     {
-        name: 'Rotate',
+        name: 'Side planks',
+        seconds: 30,
+    },
+    {
+        name: 'Planking',
+        seconds: 15,
+    },
+    {
+        name: 'Triceps push ups',
         seconds: 30,
     },
 ]
