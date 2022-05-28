@@ -10,6 +10,7 @@ import gsap from 'gsap'
 import DrawSVGPlugin from 'gsap/dist/DrawSVGPlugin'
 import classNames from 'classnames'
 import { Workout } from '../types/workout'
+import useSound from 'use-sound'
 
 gsap.registerPlugin(DrawSVGPlugin)
 
@@ -26,6 +27,8 @@ const WorkoutItem: FC<Props> = ({
 }): ReactElement => {
     const circleRef = useRef(null)
     const [seconds, setSeconds] = useState(workout.seconds)
+    const [playBeep1] = useSound('/sound/beep1.mp3', { volume: 1 })
+    const [playBeep2] = useSound('/sound/beep2.mp3', { volume: 1 })
 
     useEffect(() => setSeconds(workout.seconds), [workout])
 
@@ -35,14 +38,23 @@ const WorkoutItem: FC<Props> = ({
         let interval = setInterval(() => {
             if (seconds > 0) {
                 setSeconds(seconds - 1)
+
+                switch (seconds) {
+                    case 3:
+                    case 2:
+                    case 1:
+                        playBeep1()
+                        break
+                }
             } else {
+                playBeep2()
                 clearInterval(interval)
                 onFinish()
             }
         }, 1000)
 
         return () => clearInterval(interval)
-    }, [workout, onFinish, seconds])
+    }, [workout, onFinish, seconds, playBeep1, playBeep2])
 
     useEffect(() => {
         if (!circleRef.current) return
